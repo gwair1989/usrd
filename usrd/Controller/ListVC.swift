@@ -17,6 +17,7 @@ class ListVC: UITableViewController, UISearchBarDelegate, ManagerUSRDDelegate {
     lazy var data: [ModelUSRD] = []
     
     private var timer: Timer?
+    private var ids: (() -> Int)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +28,16 @@ class ListVC: UITableViewController, UISearchBarDelegate, ManagerUSRDDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ListVCtoPdfVc"{
-
+            let x  = ids!()
+            
             let pdfVC = segue.destination as! PDFViewController
-            pdfVC.id = data[1].id
+            pdfVC.id = data[x].id
         }
     }
     
     @objc func openPDF(_ sender: UIButton){
+
+        ids = { return sender.tag }
         performSegue(withIdentifier: "ListVCtoPdfVc", sender: self)
         
     }
@@ -74,6 +78,8 @@ class ListVC: UITableViewController, UISearchBarDelegate, ManagerUSRDDelegate {
         cell.pdfButton.addTarget(nil, action: #selector(openPDF), for: .touchUpInside)
         cell.selectedButton.addTarget(nil, action: #selector(openSelectedVC), for: .touchUpInside)
         cell.pdfButton.tag = indexPath.row
+        
+        
         
         return cell
     }

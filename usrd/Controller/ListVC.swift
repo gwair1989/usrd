@@ -29,26 +29,33 @@ class ListVC: UITableViewController, UISearchBarDelegate, ManagerUSRDDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ListVCtoPdfVc"{
             let x  = ids!()
-            
             let pdfVC = segue.destination as! PDFViewController
             pdfVC.id = data[x].id
         }
     }
     
-    @objc func openPDF(_ sender: UIButton){
-
-        ids = { return sender.tag }
-        performSegue(withIdentifier: "ListVCtoPdfVc", sender: self)
-        
-    }
-
-    
-    @objc func openSelectedVC(_ sender: UIButton){
+    @IBAction func goToSelectedVC(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "ListVcToSelectelVC", sender: self)
     }
     
+    @objc func openPDF(_ sender: UIButton){
+        ids = { return sender.tag }
+        performSegue(withIdentifier: "ListVCtoPdfVc", sender: self)
+    }
+
+    
+    @objc func addToSelected(_ sender: UIButton){
+        ids = { return sender.tag }
+        let addSelectedImage = UIImage(systemName: "star.fill")
+        let noSelectedImage = UIImage(systemName: "star")
+        if sender.currentImage == noSelectedImage {
+        sender.setImage(addSelectedImage, for: .normal)
+        } else {
+            sender.setImage(noSelectedImage, for: .normal)
+        }
+    }
+    
     func getUSRDData(data: [ModelUSRD]) {
-        
         self.data = data
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -58,7 +65,6 @@ class ListVC: UITableViewController, UISearchBarDelegate, ManagerUSRDDelegate {
     
     func getError(serverError: String) {
         print(serverError)
-        
     }
     
     
@@ -70,16 +76,13 @@ class ListVC: UITableViewController, UISearchBarDelegate, ManagerUSRDDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! TableViewCell
         
-        
-        cell.nameLabel.text = "\(data[indexPath.row].lastName) \(data[indexPath.row].firstName) \(data[indexPath.row].middleName)"
+        cell.nameLabel.text = "\(data[indexPath.row].lastname) \(data[indexPath.row].firstnameString) \(data[indexPath.row].middlename)"
         cell.jobLabel.text = "\(data[indexPath.row].workPlace)"
         cell.positionLabel.text = "\(data[indexPath.row].workPost)"
-        cell.уearLabel.text = "Рік: \(data[indexPath.row].declarationPeriod)"
+        cell.уearLabel.text = "Звітний період: \(data[indexPath.row].declarationPeriodString)"
         cell.pdfButton.addTarget(nil, action: #selector(openPDF), for: .touchUpInside)
-        cell.selectedButton.addTarget(nil, action: #selector(openSelectedVC), for: .touchUpInside)
+        cell.selectedButton.addTarget(nil, action: #selector(addToSelected), for: .touchUpInside)
         cell.pdfButton.tag = indexPath.row
-        
-        
         
         return cell
     }
@@ -92,8 +95,6 @@ class ListVC: UITableViewController, UISearchBarDelegate, ManagerUSRDDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
             self.managerUSRD.requestUSRD(lastname: searchText)
         })
-//        managerUSRD.requestUSRD(lastname: searchText)
-//        searchInDB(text: searchText, searchBar: searchBar)
     }
     
     func searchInDB(text:String, searchBar: UISearchBar){
@@ -101,7 +102,6 @@ class ListVC: UITableViewController, UISearchBarDelegate, ManagerUSRDDelegate {
         if text != ""{
 //            listArray = listArray?.filter("item CONTAINS[cd] %@", text).sorted(byKeyPath: "item", ascending: true)
         } else{
-            
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }

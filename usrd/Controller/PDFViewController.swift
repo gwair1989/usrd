@@ -29,6 +29,30 @@ class PDFViewController: UIViewController {
         }
     }
 
+    @IBAction func AddToSelect(_ sender: UIBarButtonItem) {
+        webView.createPDF { result in
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let docDirectoryPath = paths[0]
+            let pdfPath = docDirectoryPath.appendingPathComponent("\(self.id).pdf")
+            print(pdfPath)
+            switch result {
+            
+            case .success(let data):
+                do {
+                    try data.write(to: pdfPath)
+                    print("Successfully created and saved pdf…")
+                } catch let error {
+                    print("Could not _save_ pdf: \(error)")
+                }
+            case .failure(let error):
+                print("Could not create pdf: \(error)")
+            }
+
+
+        }
+//        let pdfFilePath = self.webView.exportAsPdfFromWebView(id: id)
+//        print(pdfFilePath)
+    }
     
 
 }

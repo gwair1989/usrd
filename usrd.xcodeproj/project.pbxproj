@@ -20,6 +20,7 @@
 		1F761D6F26C468B7000217C9 /* ModelUSRD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F761D6E26C468B7000217C9 /* ModelUSRD.swift */; };
 		1F761D7326C46DC4000217C9 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F761D7126C46DC4000217C9 /* TableViewCell.swift */; };
 		1F761D7426C46DC4000217C9 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F761D7226C46DC4000217C9 /* TableViewCell.xib */; };
+		1F854A0C27347AE000E5B84B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F854A0B27347AE000E5B84B /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		1F761D6E26C468B7000217C9 /* ModelUSRD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUSRD.swift; sourceTree = "<group>"; };
 		1F761D7126C46DC4000217C9 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1F761D7226C46DC4000217C9 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		1F854A0B27347AE000E5B84B /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				1F761D6826C46846000217C9 /* ManagerUSRD.swift */,
 				1F761D6A26C46883000217C9 /* DataUSRD.swift */,
 				1F761D6E26C468B7000217C9 /* ModelUSRD.swift */,
+				1F854A0B27347AE000E5B84B /* Extension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				1F761D6B26C46883000217C9 /* DataUSRD.swift in Sources */,
 				1F761D7326C46DC4000217C9 /* TableViewCell.swift in Sources */,
 				1F761D5326C46217000217C9 /* ListVC.swift in Sources */,
+				1F854A0C27347AE000E5B84B /* Extension.swift in Sources */,
 				1F761D6326C466DA000217C9 /* SelectedLIstVC.swift in Sources */,
 				1F761D4F26C46217000217C9 /* AppDelegate.swift in Sources */,
 				1F761D5126C46217000217C9 /* SceneDelegate.swift in Sources */,

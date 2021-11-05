@@ -112,7 +112,13 @@
                             <constraint firstAttribute="bottom" secondItem="e46-Ay-bYv" secondAttribute="bottom" id="xdK-S1-gjU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Z2I-qk-PsJ"/>
+                    <navigationItem key="navigationItem" id="Z2I-qk-PsJ">
+                        <barButtonItem key="rightBarButtonItem" image="star.fill" catalog="system" id="s7c-Cd-QcN">
+                            <connections>
+                                <action selector="AddToSelect:" destination="sd3-Gp-pxy" id="rmT-Xp-2lX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="e46-Ay-bYv" id="LVb-zZ-RYU"/>
                     </connections>
@@ -139,7 +145,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QWF-Gs-WzU"/>
+        <segue reference="C2Q-w6-ZEB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="star.fill" catalog="system" width="128" height="116"/>
